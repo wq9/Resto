@@ -1,0 +1,81 @@
+<dom-module id="app-contact">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+      .contact-card{
+        padding: 8px 0;
+        max-width: 480px;
+      }
+      .card-title{
+        padding: 16px;
+        margin: 0;
+      }
+    </style>
+    
+    <p class="paper-font-headline">Contact us</p>
+    <paper-material elevation="1" class="contact-card">
+        <paper-icon-item>
+          <iron-icon icon="maps:map" item-icon></iron-icon>
+          <div class="flex ellipsis" title="{{contact.address}}">{{contact.address}}</div>
+          <a href="https://goo.gl/maps/rUkof" target="_blank"><paper-icon-button icon="maps:directions"></paper-icon-button></a>
+        </paper-icon-item>
+        <paper-icon-item>
+          <iron-icon icon="maps:local-phone" item-icon></iron-icon>
+          <div class="flex ellipsis" title="{{contact.phone}}">{{contact.phone}}</div>
+        </paper-icon-item>
+        <paper-icon-item>
+          <iron-icon icon="mail" item-icon></iron-icon>
+          <div class="flex ellipsis" title="{{contact.email}}">{{contact.email}}</div>
+        </paper-icon-item>
+    </paper-material>
+
+    <template is="dom-repeat" items="{{tclasses}}">
+      <p class$="{{item}}"><span>{{item}}</span></p>
+    </template>
+
+  </template>
+
+  <script>
+    (function () {
+      'use strict';
+      Polymer({
+        is: 'app-contact',
+        properties: {
+          contact:{
+            type: Object,
+            value: function(){return{
+              address: '4119 El Camino Real, Palo Alto, CA 94306, USA',
+              phone: '650-494-9383',
+              email: 'fuki@fukisushi.com',
+            };}
+          },
+          tclasses:{
+            type: Array,
+            value: function(){return [
+              'paper-font-display4',
+              'paper-font-display3',
+              'paper-font-display2',
+              'paper-font-display1',
+              'paper-font-headline',
+              'paper-font-title',
+              'paper-font-subhead',
+              'paper-font-body2',
+              'paper-font-body1',
+              'paper-font-caption',
+              'paper-font-menu',
+              'paper-font-button',
+              'paper-font-code2',
+              'paper-font-code1'
+            ];}
+          }
+        },
+        ready: function() {
+          
+        },
+      });
+    })();
+  </script>
+
+</dom-module>

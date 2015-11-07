@@ -1,0 +1,59 @@
+<dom-module id="app-location">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+      
+      .mapbox{
+        min-width: 360px;
+        margin: 4px;
+      }
+    </style>
+
+    <p class="paper-font-headline">Location</p> 
+    <p class="paper-font-subhead">4119 El Camino Real, Palo Alto, CA 94306, USA</p>
+    
+    
+    <div class="layout horizontal wrap">
+      <!-- https://www.google.com/maps/@37.4138786,-122.126034,3a,75y,76.21h,79.69t/data=!3m6!1e1!3m4!1spacC5rf3WN1tP7ob0jVemA!2e0!7i13312!8i6656?hl=en -->
+      <google-streetview-pano id="gpano" class="flex mapbox shadow-elevation-2dp" data-aspect-ratio="16:9" 
+        position="{{position}}"
+        heading="14.6"
+        pitch="-2"
+        zoom="0.8"
+        disable-auto-pan disable-default-ui>
+      </google-streetview-pano>
+      
+      <google-map id="gmap" class="flex mapbox shadow-elevation-2dp" data-aspect-ratio="16:9" 
+        latitude="[[position.lat]]" longitude="[[position.lng]]" zoom="12">
+        <google-map-marker latitude="{{position.lat}}" longitude="{{position.lng}}" 
+          animation="DROP" title="App">
+          4119 El Camino Real, Palo Alto, CA 94306, USA
+        </google-map-marker>
+      </google-map>
+    </div>
+  </template>
+
+  <script>
+    (function () {
+      'use strict';
+      Polymer({
+        is: 'app-location',
+        properties: {
+          position:{
+            type: Object,
+            value: function() { return {
+              lat: 37.4139488,
+              lng: -122.1257323
+            }; }
+          }
+        },
+        ready: function() {
+          
+        },
+      });
+    })();
+  </script>
+
+</dom-module>

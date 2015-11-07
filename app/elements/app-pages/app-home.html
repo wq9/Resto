@@ -1,0 +1,83 @@
+<dom-module id="app-home">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+      
+      .section-grid{
+        min-width:320px;
+        min-height: 180px;
+        max-width:640px;
+        margin: 2px;
+        box-shadow: 0px 0px 2px 0px rgba(0,0,0,0.2);
+        background-color: #303030;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        position: relative;
+      }
+      .section-grid img{
+        width:100%;
+      }
+      
+      .bottom {
+        bottom: 0;
+        width: calc(100% - 32px);/* minus 2*padding */
+        color: #FFFFFF;
+        background: linear-gradient(to top, rgba(0,0,0,0.65) 0%,rgba(0,0,0,0) 100%);
+        padding: 16px;
+        position: absolute;
+      }
+    </style>
+
+    <div class="layout horizontal wrap">
+      <template is="dom-repeat" items="{{sections}}">
+        <div class="section-grid flex" style$="{{calcStyles(item)}}">
+          <a href$="{{item.href}}"><img src="{{item.image}}" style="opacity:0;">
+          <div class="layout horizontal bottom text-border">
+            <div class="flex layout vertical">
+              <div class="paper-font-display1 ellipsis p16" title="{{item.title}}">
+                <span>{{item.title}}</span>
+              </div>
+              <div class="paper-font-body1 ellipsis p12" title="{{item.description}}">{{item.description}}</div>
+            </div>
+          </div></a>
+        </div>
+      </template>
+    </div>
+
+  </template>
+
+  <script>
+    (function () {
+      'use strict';
+      Polymer({
+        is: 'app-home',
+        properties: {
+          sections:{
+            type: Array,
+            value: function(){ return [
+              {
+                title: 'Menu',
+                href: '/menu',
+                image: '/images/fuki/cover.jpg'
+              },{
+                title: 'Location',
+                href: '/location',
+                image: '/images/fuki/sv.jpg'
+              }
+            ];}
+          }
+        },
+        ready: function() {
+          
+        },
+        calcStyles: function(item){
+          return 'background-image:url("'+item.image+'")';
+        }
+      });
+    })();
+  </script>
+
+</dom-module>

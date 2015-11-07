@@ -1,0 +1,109 @@
+<dom-module id="app-menu">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+      
+      .p16{font-size: 16px;line-height: 20px;}
+      .p12{font-size: 12px;line-height: 14px;}
+      
+      .item-grid {
+        position: relative;
+        min-width: 160px;
+        min-height: 228px;
+        margin: 2px;
+        box-shadow: 0px 0px 2px 0px rgba(0,0,0,0.2);
+        background-color: #303030;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+      }
+      
+      .item-grid:nth-last-child(-n+3) {
+        flex: 0 1 auto !important; /* template is the last child so match last 2 child */
+      }
+      
+      .bottom {
+        bottom: 0;
+        width: calc(100% - 32px);/* minus 2*padding */
+        color: #FFFFFF;
+        background: linear-gradient(to top, rgba(0,0,0,0.65) 0%,rgba(0,0,0,0) 100%);
+        padding: 16px;
+        position: absolute;
+      }
+      
+      
+    </style>
+    <iron-ajax auto url="/json/fuki.json" handle-as="json" last-response="{{response}}"></iron-ajax>
+
+    <template is="dom-repeat" items="{{response.sections.section}}" as="section">
+      <p class="paper-font-headline">{{section.section_name}}</p>
+      <p class="paper-font-body1">{{section.section_desc}}</p>
+      <div class="layout horizontal wrap item-grid-container">
+        <template is="dom-repeat" items="{{section.menuItems.menuItem}}">
+          <div class="item-grid flex" style$="{{calcStyles(item)}}">
+            <div class="layout horizontal bottom text-border">
+              <div class="flex layout vertical">
+                <div class="paper-font-body2 ellipsis p16" title="{{item.item_title}}">
+                  <span>{{item.itemIndex}}</span>.&nbsp;
+                  <span>{{item.item_title}}</span>
+                </div>
+                <div class="paper-font-body1 ellipsis p12" title="{{item.item_description}}">{{item.item_description}}</div>
+              </div>
+              <div class="paper-font-body2">{{item.menuItemPrices.menuItemPrice.price_value}}</div>
+            </div>
+          </div>
+        </template>
+      </div>
+    </template>
+
+    <!--
+    <template is="dom-repeat" items="{{menu.sections}}" as="section">
+      <p class="paper-font-headline">{{section.section_name}}</p>
+      <template is="dom-repeat" items="{{section.menuItems}}">
+        <p class="paper-font-body2">{{item.item_title}}</p>
+      </template>
+    </template>
+    -->
+
+  </template>
+
+  <script>
+    (function () {
+      'use strict';
+      Polymer({
+        is: 'app-menu',
+        properties: {
+          menu:{
+            type: Object,
+            value: function(){
+              var t = new Polymer.IronMetaQuery({key: 'appdb'}).value.menu;
+              console.log(t);
+              return t;
+            }
+          }
+        },
+        ready: function(){
+          
+        },
+        formatPrice: function(p){
+          if(parseFloat(p) % 1 !== 0){
+            return p;
+          }else{
+            return parseFloat(p).toFixed(0);
+          }
+        },
+        calcWidth: function(t){
+          return Math.ceil((t.length+4)/14);//Spicy California
+        },
+        calcStyles: function(item){
+          var col = this.calcWidth(item.item_title);
+          return 'width: '+(col*160)+'px; flex: '+col+' 1 auto;'+
+          'background-image:url("http://lorempixel.com/'+(col*160)+'/228/food/'+(item.itemIndex%11)+'/")';
+        }
+      });
+    })();
+  </script>
+
+</dom-module>

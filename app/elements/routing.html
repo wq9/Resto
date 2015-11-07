@@ -1,0 +1,71 @@
+<script src="../bower_components/page/page.js"></script>
+<script>
+  window.addEventListener('WebComponentsReady', function() {
+
+    // We use Page.js for routing. This is a Micro
+    // client-side router inspired by the Express router
+    // More info: https://visionmedia.github.io/page.js/
+    
+    var shell = document.getElementById('shell');
+    var layoutNavView = document.getElementById('layoutNavView');
+    
+    // Middleware
+    function scrollToTop(ctx, next) {
+      //console.log(ctx);
+      //document.getElementById('mainContainer').scrollTop = 0;
+      
+      //set Title
+      var t = new Polymer.IronMetaQuery({key: 'appdb'}).value.navigation;
+      for(var i in t){
+        if(t[i].href===ctx.pathname){
+          layoutNavView.title = t[i].name;
+          break;
+        }
+      }
+      
+      next();
+    }
+    
+    // Routes
+    
+    page('/', scrollToTop, function() {
+      shell.route = 'home';
+      layoutNavView.title = 'Welcome to Fuki Sushi';
+      //console.log('route: home');
+    });
+    
+    page('/users', scrollToTop, function() {
+      shell.route = 'users';
+    });
+
+    page('/users/:name', scrollToTop, function(data) {
+      shell.route = 'user-info';
+      shell.params = data.params;
+    });
+    
+    page('/menu', scrollToTop, function() {
+      shell.route = 'menu';
+      layoutNavView.title = new Polymer.IronMetaQuery({key: 'appdb'}).value.menu.title;
+    });
+    
+    page('/location', scrollToTop, function() {
+      shell.route = 'location';
+      document.getElementById('gmap').resize();
+      google.maps.event.trigger(document.getElementById('pano'), 'resize');
+      setTimeout(function(){
+        //for fade transition, scrollbar
+        google.maps.event.trigger(document.getElementById('pano'), 'resize');
+      }, 600);
+    });
+    
+    page('/contact', scrollToTop, function() {
+      shell.route = 'contact';
+    });
+    
+    page({
+      //hashbang: true
+    });
+    
+  });
+
+</script>
