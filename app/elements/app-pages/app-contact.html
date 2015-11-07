@@ -38,44 +38,44 @@
   </template>
 
   <script>
-    (function () {
-      'use strict';
-      Polymer({
-        is: 'app-contact',
-        properties: {
-          contact:{
-            type: Object,
-            value: function(){return{
-              address: '4119 El Camino Real, Palo Alto, CA 94306, USA',
-              phone: '650-494-9383',
-              email: 'fuki@fukisushi.com',
-            };}
-          },
-          tclasses:{
-            type: Array,
-            value: function(){return [
-              'paper-font-display4',
-              'paper-font-display3',
-              'paper-font-display2',
-              'paper-font-display1',
-              'paper-font-headline',
-              'paper-font-title',
-              'paper-font-subhead',
-              'paper-font-body2',
-              'paper-font-body1',
-              'paper-font-caption',
-              'paper-font-menu',
-              'paper-font-button',
-              'paper-font-code2',
-              'paper-font-code1'
-            ];}
-          }
-        },
-        ready: function() {
-          
-        },
-      });
-    })();
+(function() {
+  'use strict';
+  Polymer({
+    is: 'app-contact',
+    properties: {
+      contact: {
+        type: Object,
+        value: function() {return {
+          address: '4119 El Camino Real, Palo Alto, CA 94306, USA',
+          phone: '650-494-9383',
+          email: 'fuki@fukisushi.com',
+        };}
+      },
+      tclasses: {
+        type: Array,
+        value: function() {return [
+          'paper-font-display4',
+          'paper-font-display3',
+          'paper-font-display2',
+          'paper-font-display1',
+          'paper-font-headline',
+          'paper-font-title',
+          'paper-font-subhead',
+          'paper-font-body2',
+          'paper-font-body1',
+          'paper-font-caption',
+          'paper-font-menu',
+          'paper-font-button',
+          'paper-font-code2',
+          'paper-font-code1'
+        ];}
+      }
+    },
+    ready: function() {
+      
+    },
+  });
+})();
   </script>
 
 </dom-module>

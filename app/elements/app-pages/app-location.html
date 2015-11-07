@@ -36,24 +36,24 @@
   </template>
 
   <script>
-    (function () {
-      'use strict';
-      Polymer({
-        is: 'app-location',
-        properties: {
-          position:{
-            type: Object,
-            value: function() { return {
-              lat: 37.4139488,
-              lng: -122.1257323
-            }; }
-          }
-        },
-        ready: function() {
-          
-        },
-      });
-    })();
+(function() {
+  'use strict';
+  Polymer({
+    is: 'app-location',
+    properties: {
+      position: {
+        type: Object,
+        value: function() { return {
+          lat: 37.4139488,
+          lng: -122.1257323
+        }; }
+      }
+    },
+    ready: function() {
+      
+    },
+  });
+})();
   </script>
 
 </dom-module>

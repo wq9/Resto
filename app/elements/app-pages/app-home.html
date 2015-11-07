@@ -50,34 +50,34 @@
   </template>
 
   <script>
-    (function () {
-      'use strict';
-      Polymer({
-        is: 'app-home',
-        properties: {
-          sections:{
-            type: Array,
-            value: function(){ return [
-              {
-                title: 'Menu',
-                href: '/menu',
-                image: '/images/fuki/cover.jpg'
-              },{
-                title: 'Location',
-                href: '/location',
-                image: '/images/fuki/sv.jpg'
-              }
-            ];}
+(function() {
+  'use strict';
+  Polymer({
+    is: 'app-home',
+    properties: {
+      sections: {
+        type: Array,
+        value: function() { return [
+          {
+            title: 'Menu',
+            href: '/menu',
+            image: '/images/fuki/cover.jpg'
+          }, {
+            title: 'Location',
+            href: '/location',
+            image: '/images/fuki/sv.jpg'
           }
-        },
-        ready: function() {
-          
-        },
-        calcStyles: function(item){
-          return 'background-image:url("'+item.image+'")';
-        }
-      });
-    })();
+        ];}
+      }
+    },
+    ready: function() {
+      
+    },
+    calcStyles: function(item) {
+      return 'background-image:url("' + item.image + '")';
+    }
+  });
+})();
   </script>
 
 </dom-module>

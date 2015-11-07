@@ -50,35 +50,34 @@
   </template>
 
   <script>
-    (function () {
-      'use strict';
-      Polymer({
-        is: 'app-shell',
-        properties: {
-          appdb:{
-            type: Object,
-            value: function(){
-              return {
-                'navigation': [
-                  { 'href':'/', 'route':'home', 'name': 'Home', 'icon':'home'},
-                  { 'href':'/menu', 'route':'menu', 'name': 'Menu', 'icon':'maps:restaurant-menu'},
-                  { 'href':'/location', 'route':'location', 'name': 'Location', 'icon':'maps:place'},
-                  { 'href':'/contact', 'route':'contact', 'name': 'Contact', 'icon':'mail'},
-                ],
-                'menu':{
-                  title:'Sushi a la carte',
-                  desc: '',
-                  footnote: '*Temaki (handroll) not available. **NOT Gluten free'
-                }
-              };
+(function() {
+  'use strict';
+  Polymer({
+    is: 'app-shell',
+    properties: {
+      appdb: {
+        type: Object,
+        value: function() {
+          return {
+            'navigation': [
+              {'href': '/', 'route': 'home', 'name': 'Home', 'icon': 'home'},
+              {'href': '/menu', 'route': 'menu', 'name': 'Menu', 'icon': 'maps:restaurant-menu'},
+              {'href': '/location', 'route': 'location', 'name': 'Location', 'icon': 'maps:place'},
+              {'href': '/contact', 'route': 'contact', 'name': 'Contact', 'icon': 'mail'},
+            ],
+            'menu': {
+              title: 'Sushi a la carte',
+              desc: '',
+              footnote: '*Temaki (handroll) not available. **NOT Gluten free'
             }
-          }
-        },
-        ready: function() {
-          
-        },
-      });
-    })();
+          };
+        }
+      }
+    },
+    ready: function() {
+      console.log('app-shell ready');
+    },
+  });
+})();
   </script>
-
 </dom-module>

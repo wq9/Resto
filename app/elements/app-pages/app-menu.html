@@ -70,40 +70,38 @@
   </template>
 
   <script>
-    (function () {
-      'use strict';
-      Polymer({
-        is: 'app-menu',
-        properties: {
-          menu:{
-            type: Object,
-            value: function(){
-              var t = new Polymer.IronMetaQuery({key: 'appdb'}).value.menu;
-              console.log(t);
-              return t;
-            }
-          }
-        },
-        ready: function(){
-          
-        },
-        formatPrice: function(p){
-          if(parseFloat(p) % 1 !== 0){
-            return p;
-          }else{
-            return parseFloat(p).toFixed(0);
-          }
-        },
-        calcWidth: function(t){
-          return Math.ceil((t.length+4)/14);//Spicy California
-        },
-        calcStyles: function(item){
-          var col = this.calcWidth(item.item_title);
-          return 'width: '+(col*160)+'px; flex: '+col+' 1 auto;'+
-          'background-image:url("http://lorempixel.com/'+(col*160)+'/228/food/'+(item.itemIndex%11)+'/")';
+(function() {
+  'use strict';
+
+  Polymer({
+    is: 'app-menu',
+    properties: {
+      menu: {
+        type: Object,
+        value: function() {
+          var t = new Polymer.IronMetaQuery({key: 'appdb'}).value.menu;
+          console.log(t);
+          return t;
         }
-      });
-    })();
+      }
+    },
+    ready: function() {},
+    formatPrice: function(p) {
+      if (parseFloat(p) % 1 !== 0) {
+        return p;
+      } else {
+        return parseFloat(p).toFixed(0);
+      }
+    },
+    calcWidth: function(t) {
+      return Math.ceil((t.length + 4) / 14); //Spicy California
+    },
+    calcStyles: function(item) {
+      var col = this.calcWidth(item.item_title);
+      return 'width: ' + col * 160 + 'px; flex: ' + col + ' 1 auto;' + 'background-image:url("http://lorempixel.com/' + col * 160 + '/228/food/' + item.itemIndex % 11 + '/")';
+    }
+  });
+})();
   </script>
 
 </dom-module>

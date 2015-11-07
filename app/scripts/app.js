@@ -1,4 +1,4 @@
-(function () {
+(function() {
   'use strict';
   /*
   // 4. Conditionally load the webcomponents polyfill if needed by the browser.
@@ -63,9 +63,8 @@
   // and give it some initial binding values
   // Learn more about auto-binding templates at http://goo.gl/Dx1u2g
   
-
   // See https://github.com/Polymer/polymer/issues/1381
-  window.addEventListener('WebComponentsReady', function () {
+  window.addEventListener('WebComponentsReady', function() {
     // imports are loaded and elements have been registered
     console.log('WebComponentsReady');
   });
