@@ -5,6 +5,7 @@
   "disallowSpacesInAnonymousFunctionExpression": null,
   "maximumLineLength": 400,
   "requireLineFeedAtFileEnd": false,
-  "requireCamelCaseOrUpperCaseIdentifiers": false,
+  "requireCamelCaseOrUpperCaseIdentifiers": "ignoreProperties",
+  "disallowTrailingWhitespace": false,
   "excludeFiles": ["node_modules/**"]
 }

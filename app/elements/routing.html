@@ -15,13 +15,13 @@ window.addEventListener('WebComponentsReady', function() {
     //document.getElementById('mainContainer').scrollTop = 0;
     
     //set Title
-      var t = new Polymer.IronMetaQuery({key: 'appdb'}).value.navigation;
-      for(var i in t){
-        if(t[i].href===ctx.pathname){
-          layoutNavView.title = t[i].name;
-          break;
-        }
+    var t = new Polymer.IronMetaQuery({key: 'appdb'}).value.navigation;
+    for (var i in t) {
+      if (t[i].href === ctx.pathname) {
+        layoutNavView.title = t[i].name;
+        break;
       }
+    }
     
     next();
   }
@@ -30,7 +30,7 @@ window.addEventListener('WebComponentsReady', function() {
   
   page('/', scrollToTop, function() {
     shell.route = 'home';
-    layoutNavView.title = 'Welcome to Fuki Sushi';
+    layoutNavView.title = 'Restaurant Wing Fa';
     //console.log('route: home');
   });
   
@@ -43,9 +43,13 @@ window.addEventListener('WebComponentsReady', function() {
     shell.params = data.params;
   });
   
+  page('/menu2', scrollToTop, function() {
+    shell.route = 'menu2';
+    layoutNavView.title = new Polymer.IronMetaQuery({key: 'appdb'}).value.menu.title;
+  });
+  
   page('/menu', scrollToTop, function() {
     shell.route = 'menu';
-    layoutNavView.title = new Polymer.IronMetaQuery({key: 'appdb'}).value.menu.title;
   });
   
   page('/location', scrollToTop, function() {
@@ -60,6 +64,10 @@ window.addEventListener('WebComponentsReady', function() {
   
   page('/contact', scrollToTop, function() {
     shell.route = 'contact';
+  });
+  
+  page('/hours', scrollToTop, function() {
+    shell.route = 'hours';
   });
   
   page({

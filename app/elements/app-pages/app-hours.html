@@ -1,0 +1,92 @@
+<dom-module id="app-hours">
+  <template>
+    <style>
+      :host {
+        display: block;
+        text-align: center;
+      }
+      paper-card{
+        background-color: rgba(0,0,0,0.88);
+      }
+      
+      .hours-day{
+        padding: 16px;
+      }
+      
+      table{
+        text-align: left;
+      }
+    </style>
+    
+    <paper-card>
+      <div class="card-content">
+        <table>
+          <template is="dom-repeat" items="{{hours}}">
+            <tr>
+              <td class="hours-day">{{formatDay(item.day)}}</td>
+              <td>
+                <template is="dom-repeat" items="{{item.hour}}" as="h">
+                  {{h}}<br>
+                </template>
+              </td> 
+            </tr>
+          </template>
+        </table>
+        <div>
+        </div>
+      </div>
+    </paper-card>
+
+  </template>
+
+  <script>
+(function() {
+  'use strict';
+  Polymer({
+    is: 'app-hours',
+    properties: {
+      hours: {
+        type: Array,
+        value: function(){
+          return [
+            {
+              day: 0,
+              hour: ['11:00 - 14:30','17:00 - 22:00']
+            },{
+              day: 1,
+              hour: ['11:00 - 14:30','17:00 - 22:00']
+            },{
+              day: 2,
+              hour: ['11:00 - 14:30','17:00 - 22:00']
+            },{
+              day: 3,
+              hour: ['11:00 - 14:30','17:00 - 22:00']
+            },{
+              day: 4,
+              hour: ['11:00 - 14:30','17:00 - 22:00']
+            },{
+              day: 5,
+              hour: ['17:00 - 22:00']
+            },{
+              day: 6,
+              hour: ['17:00 - 22:00']
+            }
+          ];
+        }
+      }
+    },
+    formatDay: function(d){
+      d = new Date(2016, 1, 1+d);
+      return d.toLocaleString(window.navigator.language, {weekday: 'short'})+'.';
+    },
+    formatHour: function(d){
+      return d.join('<br>');
+    },
+    ready: function() {
+      
+    },
+  });
+})();
+  </script>
+
+</dom-module>

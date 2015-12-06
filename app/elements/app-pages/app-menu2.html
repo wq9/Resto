@@ -1,4 +1,4 @@
-<dom-module id="app-menu">
+<dom-module id="app-menu2">
   <template>
     <style>
       :host {
@@ -14,7 +14,7 @@
         min-height: 200px;
         margin: 2px;
         box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.97);
-        background-color: rgba(0,0,0,0.8);
+        background-color: rgba(0,0,0,0.87);
         background-repeat: no-repeat;
         background-size: cover;
         background-position: center;
@@ -45,24 +45,24 @@
       }
       
     </style>
-    <iron-ajax auto url="/json/wingfa.json" handle-as="json" last-response="{{response}}"></iron-ajax>
+    <iron-ajax auto url="/json/fuki.json" handle-as="json" last-response="{{response}}"></iron-ajax>
 
-    <template is="dom-repeat" items="{{groupedSections(response.menu)}}" as="section">
+    <template is="dom-repeat" items="{{response.sections.section}}" as="section">
       <div class='section-container'>
-        <p class="paper-font-headline center">{{section.name}}</p>
-        <p class="paper-font-body1 center">{{section.desc}}</p>
+        <p class="paper-font-headline center">{{section.section_name}}</p>
+        <p class="paper-font-body1 center">{{section.section_desc}}</p>
         <div class="layout horizontal wrap item-grid-container">
-          <template is="dom-repeat" items="{{section.items}}">
+          <template is="dom-repeat" items="{{section.menuItems.menuItem}}">
             <div class="item-grid flex" style$="{{calcStyles(item)}}">
               <div class="layout horizontal bottom text-border">
                 <div class="flex layout vertical">
-                  <div class="paper-font-body2 ellipsis p16" title="{{item.fr}}">
-                    <span>{{formatNo(item.no)}}</span>
-                    <span>{{item.fr}}</span>
+                  <div class="paper-font-body2 ellipsis p16" title="{{item.item_title}}">
+                    <span>{{item.itemIndex}}</span>.&nbsp;
+                    <span>{{item.item_title}}</span>
                   </div>
-                  <div class="paper-font-body1 ellipsis p12" title="{{item.en}}">{{item.en}}</div>
+                  <div class="paper-font-body1 ellipsis p12" title="{{item.item_description}}">{{item.item_description}}</div>
                 </div>
-                <div class="paper-font-body2">{{formatPrice(item.price)}}</div>
+                <div class="paper-font-body2">{{item.menuItemPrices.menuItemPrice.price_value}}</div>
               </div>
             </div>
           </template>
@@ -86,7 +86,7 @@
   'use strict';
 
   Polymer({
-    is: 'app-menu',
+    is: 'app-menu2',
     properties: {
       menu: {
         type: Object,
@@ -97,43 +97,20 @@
         }
       }
     },
-    ready: function() {
-      
-    },
-    groupedSections: function(arr){
-      var groups = {};
-      arr.forEach( function( o ){
-        var group = o.section;
-        groups[group] = groups[group] || [];
-        groups[group].push( o );  
-      });
-      return Object.keys(groups).map( function( group )
-      {
-        return {'name':group, items: groups[group]}; 
-      });
-    },
-    formatNo: function(n) {
-      if (n !== '') {
-        return n + '. ';
-      } else {
-        return n;
-      }
-    },
+    ready: function() {},
     formatPrice: function(p) {
       if (parseFloat(p) % 1 !== 0) {
-        return parseFloat(p).toFixed(2);
+        return p;
       } else {
         return parseFloat(p).toFixed(0);
       }
     },
     calcWidth: function(t) {
-      return Math.ceil((t.length + 4) / 16); //Spicy California
+      return Math.ceil((t.length + 4) / 14); //Spicy California
     },
     calcStyles: function(item) {
-      var col = this.calcWidth(item.fr);
-      //var col = 2;
-      //return 'width: ' + col * 160 + 'px; flex: ' + col + ' 1 auto;' + 'background-image:url("http://lorempixel.com/' + col * 160 + '/200/food/' + item.no % 11 + '/")';
-      return 'width: ' + col * 160 + 'px; flex: ' + col + ' 1 auto;';
+      var col = this.calcWidth(item.item_title);
+      return 'width: ' + col * 160 + 'px; flex: ' + col + ' 1 auto;' + 'background-image:url("http://lorempixel.com/' + col * 160 + '/200/food/' + item.itemIndex % 11 + '/")';
     }
   });
 })();

@@ -2,7 +2,7 @@
   <template>
     <style>
       neon-animatable > * {
-        padding: 16px;
+        padding: 16px 0;
       }
       
       @media (min-width: 960px) {
@@ -19,8 +19,14 @@
         <neon-animatable data-route="home">
           <app-home></app-home>
         </neon-animatable>
+        <neon-animatable data-route="menu2">
+          <app-menu2></app-menu2>
+        </neon-animatable>
         <neon-animatable data-route="menu">
           <app-menu></app-menu>
+        </neon-animatable>
+        <neon-animatable data-route="hours">
+          <app-hours></app-hours>
         </neon-animatable>
         <neon-animatable data-route="location">
           <app-location></app-location>
@@ -62,11 +68,12 @@
             'navigation': [
               {'href': '/', 'route': 'home', 'name': 'Home', 'icon': 'home'},
               {'href': '/menu', 'route': 'menu', 'name': 'Menu', 'icon': 'maps:restaurant-menu'},
-              {'href': '/location', 'route': 'location', 'name': 'Location', 'icon': 'maps:place'},
+              {'href': '/hours', 'route': 'hours', 'name': 'Hours', 'icon': 'device:access-time'},
+              //{'href': '/location', 'route': 'location', 'name': 'Location', 'icon': 'maps:place'},
               {'href': '/contact', 'route': 'contact', 'name': 'Contact', 'icon': 'mail'},
             ],
             'menu': {
-              title: 'Sushi a la carte',
+              title: 'Sushi a la carte (Demo)',
               desc: '',
               footnote: '*Temaki (handroll) not available. **NOT Gluten free'
             }
@@ -75,6 +82,7 @@
       }
     },
     ready: function() {
+      document.body.style.backgroundImage = 'url("images/restaurant.jpg")';
       console.log('app-shell ready');
     },
   });

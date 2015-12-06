@@ -2,8 +2,13 @@
   <template>
     <style>
       :host {
-        display: block;
+        display: flex;
+        top: 0;
+        bottom: 0;
+        position: absolute;
+        width:100%;
       }
+      
       
       .section-grid{
         min-width:320px;
@@ -29,10 +34,29 @@
         padding: 16px;
         position: absolute;
       }
+      
+      .home-container{
+        text-align: center;
+        align-self:flex-end;
+        width: 100%;
+      }
+      .home-item{
+        display:block;
+        margin:auto;
+        width:320px;
+        background-color: rgba(0,0,0,0.65);
+        padding: 8px;
+        border-radius: 2px;
+      }
+      .item-title{
+        color: #FFFFFF; 
+        text-decoration: none;
+      }
     </style>
 
-    <div class="layout horizontal wrap">
+    <div class="home-container">
       <template is="dom-repeat" items="{{sections}}">
+        <!--
         <div class="section-grid flex" style$="{{calcStyles(item)}}">
           <a href$="{{item.href}}"><img src="{{item.image}}" style="opacity:0;">
           <div class="layout horizontal bottom text-border">
@@ -43,7 +67,14 @@
               <div class="paper-font-body1 ellipsis p12" title="{{item.description}}">{{item.description}}</div>
             </div>
           </div></a>
-        </div>
+        </div>-->
+        <div class="home-item">
+          <a href$="{{item.href}}" class="item-title">
+            <div class="paper-font-display1 ellipsis p16 text-border" title="{{item.title}}">
+              <span>{{item.title}}</span>
+            </div>
+          </a>
+        </div><br>
       </template>
     </div>
 
@@ -63,8 +94,12 @@
             href: '/menu',
             image: '/images/fuki/cover.jpg'
           }, {
-            title: 'Location',
-            href: '/location',
+            title: 'Hours',
+            href: '/hours',
+            image: '/images/fuki/sv.jpg'
+          }, {
+            title: 'Contact',
+            href: '/contact',
             image: '/images/fuki/sv.jpg'
           }
         ];}

@@ -1,3 +1,4 @@
+<link href='https://fonts.googleapis.com/css?family=Orbitron:400,500,700,900' rel='stylesheet' type='text/css'>
 <dom-module id="layout-nav-view">
   <template>
     <style>
@@ -11,18 +12,22 @@
         flex-direction: column;
         /* background for toolbar when it is at its full size */
         --paper-scroll-header-panel-full-header: {
-          background-image: url('http://lorempixel.com/1000/600/food/4/');
+          background-color: rgba(0,0,0,0.36);
           background-repeat: none;
           background-position: center;
           background-size: cover;
         };
         /* background for toolbar when it is condensed */
         --paper-scroll-header-panel-condensed-header: {
-          background-color: var(--default-primary-color, #ff5722);
+          background-color: rgba(0,0,0,0.72);
         };
       }
       
-      
+      paper-drawer-panel {
+        --paper-drawer-panel-left-drawer-container: {
+          background-color: rgba(0,0,0,0.6);
+        };
+      }
       
       paper-toolbar.tall .app-name {
         font-size: 40px;
@@ -35,8 +40,8 @@
       #drawerToolbar {
         height: 100%;
         color: var(--secondary-text-color);
-        background-color: var(--drawer-menu-color);
-        background-image: url('/images/fuki/fukisushi-cover.png');
+        background-color: rgba(0,0,0,0.72);
+        /*background-image: url('/images/fuki/fukisushi-cover.png');*/
         background-repeat: none;
         background-position: center;
         background-size: cover;
@@ -72,9 +77,10 @@
       }
       
       paper-menu{
+        --paper-menu-background-color: rgba(0,0,0,0);
         --paper-menu-selected-item:{
-          color: var(--default-primary-color);
-          background-color:rgba(0, 0, 0, 0.04);
+          color: rgba(255,255,255,1);
+          background-color:rgba(0, 0, 0, 0.87);
         };
         --paper-menu-focused-item-after:{
           opacity: 0;
@@ -83,7 +89,7 @@
       
       paper-menu a {
         text-decoration: none;
-        color: rgba(0,0,0,0.87);
+        color: rgba(255,255,255,0.7);
         display: -ms-flexbox;
         display: -webkit-flex;
         display: flex;
@@ -123,8 +129,8 @@
     <paper-drawer-panel id="drawerPanel" responsive-width="1280px">
       <div class="shadow-elevation-3dp" drawer>
         <div data-aspect-ratio="16:9" style="box-shadow: 0 0px 2px 0 rgba(0, 0, 0, 0.37);">
-          <paper-toolbar id="drawerToolbar">
-            <span class="paper-font-title"></span>
+          <paper-toolbar id="drawerToolbar" class="horizontal layout center center-justified">
+            <span style="font-family: 'Orbitron', sans-serif; font-size:36px; color: white;">Wing Fa</span>
           </paper-toolbar>
         </div>
         <!-- Drawer Content -->
@@ -154,7 +160,7 @@
           </div>
           <!-- Application sub title -->
           <div class="bottom bottom-container center horizontal layout" id="bottomContainer">
-            <div class="bottom-title paper-font-subhead">Japanese cuisine</div>
+            <div class="bottom-title paper-font-subhead">Restaurant Chinois</div>
           </div>
         </paper-toolbar>
 
