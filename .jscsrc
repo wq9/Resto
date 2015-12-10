@@ -6,6 +6,6 @@
   "maximumLineLength": 400,
   "requireLineFeedAtFileEnd": false,
   "requireCamelCaseOrUpperCaseIdentifiers": "ignoreProperties",
-  "disallowTrailingWhitespace": false,
+  "disallowTrailingWhitespace": null,
   "excludeFiles": ["node_modules/**"]
 }

@@ -27,32 +27,36 @@ window.addEventListener('WebComponentsReady', function() {
   }
   
   // Routes
+  page('*', scrollToTop, function(ctx, next) {
+    next();
+  });
+    
   
-  page('/', scrollToTop, function() {
+  page('/', function() {
     shell.route = 'home';
     layoutNavView.title = 'Restaurant Wing Fa';
     //console.log('route: home');
   });
   
-  page('/users', scrollToTop, function() {
+  page('/users', function() {
     shell.route = 'users';
   });
 
-  page('/users/:name', scrollToTop, function(data) {
+  page('/users/:name', function(data) {
     shell.route = 'user-info';
     shell.params = data.params;
   });
   
-  page('/menu2', scrollToTop, function() {
+  page('/menu2', function() {
     shell.route = 'menu2';
     layoutNavView.title = new Polymer.IronMetaQuery({key: 'appdb'}).value.menu.title;
   });
   
-  page('/menu', scrollToTop, function() {
+  page('/menu', function() {
     shell.route = 'menu';
   });
   
-  page('/location', scrollToTop, function() {
+  page('/location', function() {
     shell.route = 'location';
     document.getElementById('gmap').resize();
     google.maps.event.trigger(document.getElementById('pano'), 'resize');
@@ -62,12 +66,19 @@ window.addEventListener('WebComponentsReady', function() {
     }, 600);
   });
   
-  page('/contact', scrollToTop, function() {
+  page('/contact', function() {
     shell.route = 'contact';
   });
   
-  page('/hours', scrollToTop, function() {
+  page('/hours', function() {
     shell.route = 'hours';
+  });
+  
+  // 404
+  page('*', function() {
+    shell.$.toast.text = 'Can\'t find: ' + window.location.href  + '. Redirected you to Home Page';
+    shell.$.toast.show();
+    page.redirect('/');
   });
   
   page({
