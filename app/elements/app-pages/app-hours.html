@@ -47,7 +47,7 @@
     properties: {
       hours: {
         type: Array,
-        value: function(){
+        value: function() {
           return [
             {
               day: 0,
@@ -75,11 +75,11 @@
         }
       }
     },
-    formatDay: function(d){
-      d = new Date(2016, 1, 1+d);
-      return d.toLocaleString(window.navigator.language, {weekday: 'short'})+'.';
+    formatDay: function(d) {
+      d = new Date(2016, 1, 1 + d);
+      return d.toLocaleString(window.navigator.language, {weekday: 'short'}) + '.';
     },
-    formatHour: function(d){
+    formatHour: function(d) {
       return d.join('<br>');
     },
     ready: function() {

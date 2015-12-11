@@ -100,16 +100,15 @@
     ready: function() {
       
     },
-    groupedSections: function(arr){
+    groupedSections: function(arr) {
       var groups = {};
-      arr.forEach( function( o ){
+      arr.forEach(function(o) {
         var group = o.section;
         groups[group] = groups[group] || [];
-        groups[group].push( o );  
+        groups[group].push(o);  
       });
-      return Object.keys(groups).map( function( group )
-      {
-        return {'name':group, items: groups[group]}; 
+      return Object.keys(groups).map(function(group) {
+        return {'name': group, items: groups[group]};
       });
     },
     formatNo: function(n) {

@@ -7,7 +7,6 @@ window.addEventListener('WebComponentsReady', function() {
   // More info: https://visionmedia.github.io/page.js/
   
   var shell = document.getElementById('shell');
-  var layoutNavView = document.getElementById('layoutNavView');
   
   // Middleware
   function scrollToTop(ctx, next) {
@@ -18,7 +17,7 @@ window.addEventListener('WebComponentsReady', function() {
     var t = new Polymer.IronMetaQuery({key: 'appdb'}).value.navigation;
     for (var i in t) {
       if (t[i].href === ctx.pathname) {
-        layoutNavView.title = t[i].name;
+        shell.header = t[i].name;
         break;
       }
     }
@@ -30,11 +29,10 @@ window.addEventListener('WebComponentsReady', function() {
   page('*', scrollToTop, function(ctx, next) {
     next();
   });
-    
   
   page('/', function() {
     shell.route = 'home';
-    layoutNavView.title = 'Restaurant Wing Fa';
+    shell.header = 'Restaurant Wing Fa';
     //console.log('route: home');
   });
   
@@ -49,7 +47,7 @@ window.addEventListener('WebComponentsReady', function() {
   
   page('/menu2', function() {
     shell.route = 'menu2';
-    layoutNavView.title = new Polymer.IronMetaQuery({key: 'appdb'}).value.menu.title;
+    shell.header = new Polymer.IronMetaQuery({key: 'appdb'}).value.menu.title;
   });
   
   page('/menu', function() {
@@ -82,7 +80,7 @@ window.addEventListener('WebComponentsReady', function() {
   });
   
   page({
-    //hashbang: true
+    hashbang: false
   });
   
 });
